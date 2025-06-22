@@ -190,6 +190,42 @@ body {
 }
 /* --- End Sassy Project Card Styles --- */
 
+/* Winner Project Card Styles */
+.sassy-card.winner-card {
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.18), 
+              0 0 0 1px rgba(251, 191, 36, 0.3),
+              0 0 20px rgba(251, 191, 36, 0.2);
+  animation: winnerGlow 3s ease-in-out infinite alternate;
+}
+
+.sassy-card.winner-card:hover {
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.18), 
+              0 0 0 1px rgba(251, 191, 36, 0.5),
+              0 0 30px rgba(251, 191, 36, 0.4);
+}
+
+@keyframes winnerGlow {
+  0% {
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.18), 
+                0 0 0 1px rgba(251, 191, 36, 0.3),
+                0 0 20px rgba(251, 191, 36, 0.2);
+  }
+  100% {
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.18), 
+                0 0 0 1px rgba(251, 191, 36, 0.5),
+                0 0 30px rgba(251, 191, 36, 0.4);
+  }
+}
+
+.winner-badge {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  font-size: 2rem;
+  z-index: 10;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
+}
+
 /* Style for rich text in experience highlights */
 .experience-highlight b,
 .experience-highlight strong {
@@ -208,6 +244,28 @@ body {
   transition: color 0.2s;
 }
 .experience-highlight a:hover {
+  color: #38bdf8;
+  text-decoration: underline wavy;
+}
+
+/* Style for rich text in recommendations */
+.recommendation-text b,
+.recommendation-text strong {
+  font-weight: bold;
+  color: #a5f3fc;
+}
+.recommendation-text i,
+.recommendation-text em {
+  font-style: italic;
+  color: #a5b4fc;
+}
+.recommendation-text a {
+  color: #67e8f9;
+  text-decoration: underline;
+  font-weight: 500;
+  transition: color 0.2s;
+}
+.recommendation-text a:hover {
   color: #38bdf8;
   text-decoration: underline wavy;
 }

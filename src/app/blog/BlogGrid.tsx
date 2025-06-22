@@ -3,6 +3,8 @@ import { siteConfig } from '../../content';
 
 const MEDIUM_RSS = siteConfig.blog.rssurl;
 
+export const dynamic = "force-dynamic";
+
 function estimateReadingTime(text: string) {
   const words = text.split(/\s+/).length;
   return `${Math.max(1, Math.round(words / 200))} min read`;

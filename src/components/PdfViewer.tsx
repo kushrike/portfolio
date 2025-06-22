@@ -21,7 +21,7 @@ export default function PdfViewer({ pdfUrl }: PdfViewerProps) {
   }
 
   function onDocumentLoadProgress() {
-    return <div className="flex flex-col items-center w-full">Loading PDF...<Loader /></div>;
+    return <div className="flex flex-col items-center w-full">Loading Resume...<Loader /></div>;
   }
 
   return (

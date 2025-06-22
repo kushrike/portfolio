@@ -1,5 +1,6 @@
 import { siteConfig } from "../../content";
 import Image from "next/image";
+import Link from "next/link";
 
 export default function Experience() {
   return (
@@ -9,22 +10,29 @@ export default function Experience() {
       <div className="relative border-l-2 border-cyan-700/40 pl-8 space-y-16">
         {siteConfig.experience.map((exp) => (
           <div key={`${exp.company}-${exp.title}`} className="relative group">
-            {/* Timeline dot with glow */}
-            <span className="absolute -left-6 top-8 w-6 h-6 rounded-full bg-gradient-to-br from-cyan-400 to-purple-600 border-2 border-black shadow-xl animate-pulse" style={{ zIndex: 2 }}></span>
+            {/* Period pill on the left side */}
+            <div className="absolute -left-32 top-10 transform -translate-x-1/2">
+              <span className="bg-gradient-to-r from-cyan-900/80 to-purple-900/80 text-cyan-200 px-3 py-1 rounded-full text-sm font-medium border border-cyan-700/50 shadow-lg backdrop-blur-sm whitespace-nowrap">
+                {exp.period}
+              </span>
+            </div>
+            
+            {/* Timeline dot with glow - positioned directly on the vertical line */}
+            <span className="absolute -left-10.5 top-10 w-6 h-6 rounded-full bg-gradient-to-br from-cyan-400 to-purple-600 border-2 border-black shadow-xl animate-pulse" style={{ zIndex: 2 }}></span>
+            
             <div className="bg-gradient-to-br from-[#18181b] via-[#1e293b] to-[#18181b] rounded-2xl p-8 shadow-2xl border border-cyan-900/30 group-hover:border-cyan-400 transition relative overflow-hidden">
               {/* Glowing border effect */}
               <div className="absolute inset-0 rounded-2xl pointer-events-none border-2 border-transparent group-hover:border-cyan-400 group-hover:shadow-[0_0_40px_0_rgba(34,211,238,0.3)] transition-all duration-300" />
               <div className="flex flex-col md:flex-row md:justify-between md:items-center mb-2 gap-4">
                 <div className="flex items-center gap-3 min-w-0">
-                  <div className="flex-shrink-0 w-12 h-12 rounded-full bg-white border-2 border-cyan-800 flex items-center justify-center overflow-hidden shadow-md">
+                  <Link href={exp.link} target="_blank" rel="noopener noreferrer" className="flex-shrink-0 w-12 h-12 rounded-full bg-white border-2 border-cyan-800 flex items-center justify-center overflow-hidden shadow-md hover:border-cyan-400 transition-colors">
                     <Image src={exp.logo} alt={exp.company + ' logo'} width={48} height={48} className="object-contain" />
-                  </div>
+                  </Link>
                   <div className="min-w-0">
                     <h2 className="text-xl font-bold text-cyan-300 truncate"><a href={exp.link} target="_blank" rel="noopener noreferrer">{exp.company}</a></h2>
                     <p className="text-gray-400 text-sm md:text-base break-words">{exp.title}</p>
                   </div>
                 </div>
-                <span className="text-gray-500 mt-2 md:mt-0 whitespace-nowrap text-sm md:text-base">{exp.period}</span>
               </div>
               <div className="mt-4">
                 <ul className="experience-highlight text-gray-300 space-y-2">
@@ -44,8 +52,6 @@ export default function Experience() {
             </div>
           </div>
         ))}
-        {/* Timeline end dot with glow */}
-        <span className="absolute -left-6 bottom-0 w-6 h-6 rounded-full bg-cyan-400 border-2 border-black shadow-xl animate-pulse" style={{ zIndex: 2 }}></span>
         {/* Decorative vertical gradient line */}
         <div className="absolute left-0 top-0 h-full w-1 bg-gradient-to-b from-cyan-400/60 via-purple-600/30 to-cyan-900/0 rounded-full pointer-events-none" style={{ zIndex: 1 }} />
       </div>

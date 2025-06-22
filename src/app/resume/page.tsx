@@ -19,7 +19,7 @@ export default function ResumePage() {
           </svg>
         </Link>
       </div>
-      <PdfViewer pdfUrl="/api/resume-pdf" />
+      <PdfViewer pdfUrl={siteConfig.about.resumeUrl} />
     </section>
   );
 } 

@@ -24,11 +24,14 @@ export default function Projects() {
         {siteConfig.projects.map((project) => (
           <div
             key={project.name}
-            className="sassy-card group relative flex flex-col"
+            className={`sassy-card group relative flex flex-col ${project.isWinner ? 'winner-card' : ''}`}
             onMouseMove={e => handleMouseMove(e)}
             onMouseLeave={handleMouseLeave}
             style={{ minHeight: 340 }}
           >
+            {project.isWinner && (
+              <div className="winner-badge">🥇</div>
+            )}
             <div className="sassy-card-inner p-6 flex flex-col flex-1">
               {/* Title */}
               <h2 className="sassy-title">{project.name}</h2>
@@ -76,7 +79,7 @@ export default function Projects() {
                       <circle cx="12" cy="12" r="10" strokeWidth="2" />
                       <path strokeWidth="2" d="M2 12h20M12 2a15.3 15.3 0 0 1 0 20M12 2a15.3 15.3 0 0 0 0 20" />
                     </svg>
-                    <span className="sassy-tooltip">View Live</span>
+                    <span className="sassy-tooltip">View Demo</span>
                   </Link>
                 </div>
               </div>
