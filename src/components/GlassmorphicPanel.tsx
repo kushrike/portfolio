@@ -131,6 +131,8 @@ export default function GlassmorphicPanel({ children, boxWidth }: { children: Re
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
     >
+      {/* Subtle colorful hue overlay */}
+      <div className="absolute inset-0 pointer-events-none z-0 bg-gradient-to-br from-cyan-400/5 via-pink-400/5 to-teal-300/5" />
       {/* Interactive background layer with Suits */}
       <div className="absolute inset-0 h-full pointer-events-none" style={{ zIndex: 1 }}>
         {renderSuits()}
