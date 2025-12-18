@@ -75,12 +75,17 @@ export default function Home() {
       {/* Recommendations Section */}
       <section className="w-full flex flex-col items-center justify-center py-16 px-4">
         <h3 className="text-lg font-semibold text-cyan-400 mb-2 text-center">recommendations</h3>
-        <h2 className="text-3xl md:text-4xl font-bold mb-10 text-center">What do my mentors say</h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 w-full max-w-6xl">
+        <h2 className="text-3xl md:text-4xl font-bold mb-10 text-center">what do my mentors say</h2>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 w-full max-w-6xl">
           {siteConfig.recommendations.map((rec, idx) => (
-            <div key={idx} className="bg-gradient-to-br from-[#181c23] via-[#23233a] to-[#181c23] border border-[#232b36] shadow-xl p-6 rounded-2xl flex flex-col justify-between min-h-[260px]">
-              <p className="recommendation-text text-gray-200 text-base mb-6" dangerouslySetInnerHTML={{ __html: `"${rec.text}"` }} />
-              <div className="flex items-center gap-4 mt-auto">
+            <div
+              key={idx}
+              className={`bg-gradient-to-br from-[#181c23] via-[#23233a] to-[#181c23] border border-[#232b36] shadow-xl p-6 rounded-2xl flex flex-col justify-between min-h-[260px] ${idx === 0 ? 'md:col-span-2 md:flex-row md:items-center md:gap-10' : ''}`}
+            >
+              <div className={idx === 0 ? 'md:w-[65%]' : ''}>
+                <p className={`recommendation-text text-gray-200 text-base ${idx === 0 ? 'mb-0' : 'mb-6'}`} dangerouslySetInnerHTML={{ __html: `"${rec.text}"` }} />
+              </div>
+              <div className={`flex items-center gap-4 ${idx === 0 ? 'md:w-[35%] md:border-l md:border-gray-700 md:pl-8' : 'mt-auto'}`}>
                 <img src={rec.profile} alt={rec.name} className="w-10 h-10 rounded-full object-cover border-2 border-cyan-400" />
                 <div className="flex-1">
                   <div className="font-semibold text-gray-100">{rec.name}</div>
@@ -88,7 +93,7 @@ export default function Home() {
                 </div>
                 {rec.linkedin && (
                   <Link href={rec.linkedin} target="_blank" className="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center hover:bg-blue-800 transition-colors" aria-label={`${rec.name}'s LinkedIn`}>
-                   <FaLinkedin size={22} color="#f0f0f0" />
+                    <FaLinkedin size={22} color="#f0f0f0" />
                   </Link>
                 )}
               </div>

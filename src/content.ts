@@ -4,7 +4,7 @@ export const siteConfig = {
   name: 'kushrike',
   title: 'a.k.a. Kushal Srivastava',
   about: {
-    headline: 'Software geek and a Power Rangers nerd. Working as a backend engineer at Hashicorp.',
+    headline: 'Software geek and a Power Rangers nerd. Working full time as a backend engineer at Hashicorp.',
     socials: {
       github: 'https://github.com/kushrike',
       linkedin: 'https://linkedin.com/in/kushrike',
@@ -71,7 +71,7 @@ export const siteConfig = {
         'Designed and implemented <b>transaction and ledger behaviour</b>, integrated <b>Razorpay payment schemes</b> to handle order processing and refunds.',
         'Engineered an <b>expense module</b> which accepted company wide expenses and validated them based upon expense category and type.',
       ],
-      skills: ['Java', 'SpringBoot', 'Hibernate', 'JHipster', 'PostgreSQL', 'Golang', 'Iris', 'MongoDB'],  
+      skills: ['Java', 'SpringBoot', 'Hibernate', 'JHipster', 'PostgreSQL', 'Golang', 'Iris', 'MongoDB'],
     },
     {
       company: 'D.E Shaw & Co.',
@@ -83,7 +83,7 @@ export const siteConfig = {
         'Developed and deployed an in‑house toolset from scratch to aggregate, display and update datasets informations used by Finance wing.',
         '<b>Enhanced overall productivity by 200%</b> by reducing the dependence of the financial stakeholders over Ops team and eliminating slow e‑mail based communications.',
       ],
-      skills: ['ReactJS', 'Redux', 'Python', 'SQL'],  
+      skills: ['ReactJS', 'Redux', 'Python', 'SQL'],
     },
   ],
   projects: [

@@ -20,7 +20,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: siteConfig.name + " | " + siteConfig.title,
+  title: siteConfig.name,
   description: siteConfig.about.headline,
 };
 
@@ -61,7 +61,7 @@ export default function RootLayout({
               <Navbar />
               <main className="flex-1 w-full pt-14 md:pt-16">{children}</main>
               <footer className="w-full flex items-center justify-between px-8 py-6 border-t border-[#232b36] mt-auto text-gray-400 text-sm">
-                <span>© 2025 kushrike • all rights reserved</span>
+                <span>© 2026 kushrike • all rights reserved</span>
                 <div className="flex items-center gap-4">
                   <a href={siteConfig.about.socials.github} target="_blank" rel="noopener noreferrer" aria-label="GitHub" className="rounded-full p-1 hover:bg-cyan-900/30 hover:scale-110 transition-all duration-200 opacity-80">
                     <FaGithub size={22} color="#f0f0f0" />
