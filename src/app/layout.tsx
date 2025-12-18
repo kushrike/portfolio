@@ -7,6 +7,7 @@ import GlassmorphicPanel from "../components/GlassmorphicPanel";
 import { FaGithub, FaLinkedin } from 'react-icons/fa';
 import { FaXTwitter, FaRedditAlien } from "react-icons/fa6";
 import { MdEmail } from 'react-icons/md';
+import { Analytics } from "@vercel/analytics/next";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -82,6 +83,7 @@ export default function RootLayout({
             </div>
           </GlassmorphicPanel>
         </div>
+        <Analytics />
       </body>
     </html>
   );
