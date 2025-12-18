@@ -134,6 +134,12 @@ export const siteConfig = {
   },
   github: {
     username: 'kush-zluri',
+    // GitHub accounts used for the contributions heatmap:
+    // - beforeCutoffUsername: used for all days before cutoffDate
+    // - afterCutoffUsername: used for all days on/after cutoffDate
+    beforeCutoffUsername: 'kush-zluri',
+    afterCutoffUsername: 'kushrike',
+    cutoffDate: '2025-06-01',
     contribution_url: 'https://docs.github.com/en/account-and-profile/setting-up-and-managing-your-github-profile/managing-contribution-settings-on-your-profile/why-are-my-contributions-not-showing-up-on-my-profile',
   },
   recommendations: [

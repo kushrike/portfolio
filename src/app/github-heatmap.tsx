@@ -68,13 +68,65 @@ async function fetchContributions(username: string, token?: string) {
   return json?.data?.user?.contributionsCollection?.contributionCalendar;
 }
 
-export default async function GithubHeatmap({ username }: { username: string }) {
-  const token = process.env.PERSONAL_GITHUB_TOKEN;
-  const calendar = await fetchContributions(username, token);
-  if (!calendar) {
+export default async function GithubHeatmap({
+  beforeUsername,
+  afterUsername,
+  cutoffDate,
+}: {
+  beforeUsername: string;
+  afterUsername: string;
+  cutoffDate: string;
+}) {
+  const beforeToken =
+    process.env.PERSONAL_GITHUB_TOKEN_BEFORE ?? process.env.PERSONAL_GITHUB_TOKEN;
+  const afterToken =
+    process.env.PERSONAL_GITHUB_TOKEN_AFTER ?? process.env.PERSONAL_GITHUB_TOKEN;
+
+  const [beforeCalendar, afterCalendar] = await Promise.all([
+    fetchContributions(beforeUsername, beforeToken),
+    fetchContributions(afterUsername, afterToken),
+  ]);
+
+  const baseCalendar = beforeCalendar ?? afterCalendar;
+
+  if (!baseCalendar) {
     return <div className="text-gray-400">Unable to load GitHub contributions.</div>;
   }
-  const weeks = calendar.weeks;
+
+  const cutoff = new Date(cutoffDate);
+
+  // Merge the two calendars by date, using:
+  // - beforeUsername's data for days before cutoff
+  // - afterUsername's data for days on/after cutoff
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const weeks = baseCalendar.weeks.map((week: any, wi: number) => ({
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    contributionDays: week.contributionDays.map((day: any, di: number) => {
+      const dayDate = new Date(day.date);
+      const useBefore = dayDate < cutoff;
+      const sourceCalendar = useBefore ? beforeCalendar : afterCalendar;
+      const sourceDay =
+        sourceCalendar?.weeks?.[wi]?.contributionDays?.[di] ?? null;
+
+      return {
+        ...day,
+        contributionCount: sourceDay?.contributionCount ?? 0,
+      };
+    }),
+  }));
+
+  const totalContributions = weeks.reduce(
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    (acc: number, week: any) =>
+      acc +
+      week.contributionDays.reduce(
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        (innerAcc: number, day: any) => innerAcc + (day.contributionCount || 0),
+        0
+      ),
+    0
+  );
+
   const monthLabels = getMonthLabels(weeks);
   // For day labels, GitHub shows Sun, Tue, Thu, Sat (0, 2, 4, 6)
   const dayIndexes = [0, 2, 4, 6];
@@ -95,7 +147,7 @@ export default async function GithubHeatmap({ username }: { username: string }) 
         {/* Top right: includes private contributions */}
         <div className="absolute right-4 md:right-8 top-4 md:top-6 text-xs text-blue-200 opacity-70">*includes private contributions</div>
         {/* Main text */}
-        <div className="mb-4 text-gray-400 text-base md:text-lg font-normal">{calendar.totalContributions} contributions in the last year</div>
+        <div className="mb-4 text-gray-400 text-base md:text-lg font-normal">{totalContributions} contributions in the last year</div>
         <div className="flex flex-col" style={{ minWidth: 0 }}>
           {/* Month labels */}
           <div className="flex ml-8 md:ml-12 mb-2 text-xs md:text-sm text-blue-200 font-medium" style={{ minWidth: 0 }}>

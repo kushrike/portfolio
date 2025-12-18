@@ -65,7 +65,11 @@ export default function Home() {
       {/* GitHub Heatmap Section - visually distinct */}
       <section className="relative z-20 flex flex-col items-center justify-center pb-12 w-full">
         <div className="relative z-10 w-full max-w-3xl mx-auto">
-          <GithubHeatmap username={siteConfig.github.username} />
+          <GithubHeatmap
+            beforeUsername={siteConfig.github.beforeCutoffUsername}
+            afterUsername={siteConfig.github.afterCutoffUsername}
+            cutoffDate={siteConfig.github.cutoffDate}
+          />
         </div>
       </section>
       {/* Recommendations Section */}
